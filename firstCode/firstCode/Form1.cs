@@ -19,7 +19,7 @@ namespace firstCode
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("прив:))");
+            MessageBox.Show("прив:)) ааааааааааааааааааааа");
 
         }
     }
