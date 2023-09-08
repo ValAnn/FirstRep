@@ -36,12 +36,10 @@ namespace firstCode
             _drawningDumpTruck = new DrawningDumpTruck();
             _drawningDumpTruck.Init(random.Next(100, 300),
             random.Next(1000, 3000),
-            Color.FromArgb(random.Next(0, 256), random.Next(0, 256),
-            random.Next(0, 256)),
-            Color.FromArgb(random.Next(0, 256), random.Next(0, 256),
-            random.Next(0, 256)),
+            Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)),
+            Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)),
             Convert.ToBoolean(random.Next(0, 2)),
-            Convert.ToBoolean(random.Next(0, 2)), Convert.ToBoolean(random.Next(0, 2)),
+            Convert.ToBoolean(random.Next(0, 2)), 
             pictureBox.Width, pictureBox.Height);
 
             _drawningDumpTruck.SetPosition(random.Next(10, 100),

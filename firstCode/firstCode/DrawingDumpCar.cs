@@ -26,12 +26,12 @@ namespace firstCode
 
         private readonly int _carHeight = 60;
 
-        public bool Init(int speed, double weight, Color bodyColor, Color additionalColor, bool bodyKit, bool wing, bool sportLine, int width, int height)
+        public bool Init(int speed, double weight, Color bodyColor, Color additionalColor, bool bodyKit, bool tent, int width, int height)
         {
             _pictureWidth = width;
             _pictureHeight = height;
             EntityDumpTruck = new DumpTruck();
-            EntityDumpTruck.Init(speed, weight, bodyColor, additionalColor, bodyKit, wing, sportLine);
+            EntityDumpTruck.Init(speed, weight, bodyColor, additionalColor, bodyKit, tent);
             return true;
         }
        
@@ -93,118 +93,47 @@ namespace firstCode
             }
             
             Pen pen = new Pen(Color.Black);
-            Brush additionalBrush = new
-            SolidBrush(EntityDumpTruck.AdditionalColor);
-            // обвесы
+            Brush brush = new SolidBrush(EntityDumpTruck.BodyColor);
+            Brush addBrush = new SolidBrush(EntityDumpTruck.AdditionalColor);
+
+            //границы автомобиля
+            g.FillRectangle(brush, _startPosX , _startPosY + 35, 110, 10);
+            g.FillRectangle(brush, _startPosX + 85, _startPosY, 25, 35);
+            g.FillEllipse(brush, _startPosX, _startPosY + 35 + 10, 15, 15);
+            g.FillEllipse(brush, _startPosX + 15, _startPosY + 35 + 10, 15, 15);
+            g.FillEllipse(brush, _startPosX + 95, _startPosY + 35 + 10, 15, 15);
+
+            if (EntityDumpTruck.Tent)
+            {
+                
+                Point[] points = new Point[3];
+                points[0].X = _startPosX; points[0].Y = _startPosY + 35;
+                points[1].X = _startPosX + 85; points[1].Y = _startPosY;
+                points[2].X = _startPosX + 85; points[2].Y = _startPosY + 35;
+                g.FillPolygon(addBrush, points);
+            }
+
             if (EntityDumpTruck.BodyKit)
             {
-                g.DrawEllipse(pen, _startPosX + 90, _startPosY, 20, 20);
-                g.DrawEllipse(pen, _startPosX + 90, _startPosY + 40, 20,
-                20);
-                g.DrawRectangle(pen, _startPosX + 90, _startPosY + 10,
-                20, 40);
-                g.DrawRectangle(pen, _startPosX + 90, _startPosY, 15,
-                15);
-                g.DrawRectangle(pen, _startPosX + 90, _startPosY + 45,
-                15, 15);
-                g.FillEllipse(additionalBrush, _startPosX + 90,
-                _startPosY, 20, 20);
-                g.FillEllipse(additionalBrush, _startPosX + 90,
-                _startPosY + 40, 20, 20);
-                g.FillRectangle(additionalBrush, _startPosX + 90,
-                _startPosY + 10, 20, 40);
-            g.FillRectangle(additionalBrush, _startPosX + 90,
-            _startPosY + 1, 15, 15);
-                g.FillRectangle(additionalBrush, _startPosX + 90,
-                _startPosY + 45, 15, 15);
-                g.DrawEllipse(pen, _startPosX, _startPosY, 20, 20);
-                g.DrawEllipse(pen, _startPosX, _startPosY + 40, 20, 20);
-                g.DrawRectangle(pen, _startPosX, _startPosY + 10, 20,
-                40);
-                g.DrawRectangle(pen, _startPosX + 5, _startPosY, 14,
-                15);
-                g.DrawRectangle(pen, _startPosX + 5, _startPosY + 45,
-                14, 15);
-                g.FillEllipse(additionalBrush, _startPosX, _startPosY,
-                20, 20);
-                g.FillEllipse(additionalBrush, _startPosX, _startPosY +
-                40, 20, 20);
-                g.FillRectangle(additionalBrush, _startPosX + 1,
-                _startPosY + 10, 25, 40);
-                g.FillRectangle(additionalBrush, _startPosX + 5,
-                _startPosY + 1, 15, 15);
-                g.FillRectangle(additionalBrush, _startPosX + 5,
-                _startPosY + 45, 15, 15);
-                g.DrawRectangle(pen, _startPosX + 35, _startPosY, 39,
-                15);
-                g.DrawRectangle(pen, _startPosX + 35, _startPosY + 45,
-                39, 15);
-                g.FillRectangle(additionalBrush, _startPosX + 35,
-                _startPosY + 1, 40, 15);
-                g.FillRectangle(additionalBrush, _startPosX + 35,
-                _startPosY + 45, 40, 15);
+                Point[] points = new Point[4];
+                points[0].X = _startPosX; points[0].Y = _startPosY + 35;
+                points[1].X = _startPosX; points[1].Y = _startPosY;
+                points[2].X = _startPosX + 85; points[2].Y = _startPosY;
+                points[3].X = _startPosX + 85; points[3].Y = _startPosY + 35;
+                g.FillPolygon(addBrush, points);
             }
-            //границы автомобиля
-            
-            g.DrawEllipse(pen, _startPosX + 10, _startPosY + 5, 20, 20);
-            g.DrawEllipse(pen, _startPosX + 10, _startPosY + 35, 20, 20);
-            g.DrawEllipse(pen, _startPosX + 80, _startPosY + 5, 20, 20);
-            g.DrawEllipse(pen, _startPosX + 80, _startPosY + 35, 20, 20);
-            g.DrawRectangle(pen, _startPosX + 9, _startPosY + 15, 10, 30);
-            g.DrawRectangle(pen, _startPosX + 90, _startPosY + 15, 10,
-            30);
-            g.DrawRectangle(pen, _startPosX + 20, _startPosY + 4, 70, 52);
-            //задние фары
-            Brush brRed = new SolidBrush(Color.Red);
-            g.FillEllipse(brRed, _startPosX + 10, _startPosY + 5, 20, 20);
-            g.FillEllipse(brRed, _startPosX + 10, _startPosY + 35, 20,
-            20);
-            //передние фары
-            Brush brYellow = new SolidBrush(Color.Yellow);
-            g.FillEllipse(brYellow, _startPosX + 80, _startPosY + 5, 20,
-            20);
-            g.FillEllipse(brYellow, _startPosX + 80, _startPosY + 35, 20,
-            20);
-            //кузов
-            Brush br = new SolidBrush(EntityDumpTruck.BodyColor);
-            g.FillRectangle(br, _startPosX + 10, _startPosY + 15, 10, 30);
-            g.FillRectangle(br, _startPosX + 90, _startPosY + 15, 10, 30);
-            g.FillRectangle(br, _startPosX + 20, _startPosY + 5, 70, 50);
-            
-        //стекла
-Brush brBlue = new SolidBrush(Color.LightBlue);
-            g.FillRectangle(brBlue, _startPosX + 70, _startPosY + 10, 5,
-            40);
-            g.FillRectangle(brBlue, _startPosX + 30, _startPosY + 10, 5,
-            40);
-            g.FillRectangle(brBlue, _startPosX + 35, _startPosY + 8, 35,
-            2);
-            g.FillRectangle(brBlue, _startPosX + 35, _startPosY + 51, 35,
-            2);
-            //выделяем рамкой крышу
-            g.DrawRectangle(pen, _startPosX + 35, _startPosY + 10, 35,
-            40);
-            g.DrawRectangle(pen, _startPosX + 75, _startPosY + 15, 25,
-            30);
-            g.DrawRectangle(pen, _startPosX + 10, _startPosY + 15, 15,
-            30);
-            // спортивная линия
-            if (EntityDumpTruck.SportLine)
+
+            if (EntityDumpTruck.BodyKit && EntityDumpTruck.Tent)
             {
-                g.FillRectangle(additionalBrush, _startPosX + 75,
-                _startPosY + 23, 25, 15);
-                g.FillRectangle(additionalBrush, _startPosX + 35,
-                _startPosY + 23, 35, 15);
-                g.FillRectangle(additionalBrush, _startPosX + 10,
-                _startPosY + 23, 20, 15);
-            }
-            // крыло
-            if (EntityDumpTruck.Wing)
-            {
-                g.FillRectangle(additionalBrush, _startPosX, _startPosY
-                + 5, 10, 50);
-                g.DrawRectangle(pen, _startPosX, _startPosY + 5, 10,
-                50);
+                int x = _startPosX;
+                int y = _startPosY - 8;
+                g.FillRectangle(brush, _startPosX, _startPosY, 95, 3);
+                for (int i = 0; i < 6; i++)
+                {
+                    Rectangle smallRect = new Rectangle(x, y, 15, 15);
+                    g.FillPie(brush, smallRect, 0, 180);
+                    x += 15;
+                }
             }
         }
     }

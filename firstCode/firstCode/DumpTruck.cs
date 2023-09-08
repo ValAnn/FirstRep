@@ -33,46 +33,30 @@ namespace firstCode
         public Color AdditionalColor { get; private set; }
 
         /// <summary>
-        /// Признак (опция) наличия обвеса
+        /// Признак (опция) наличия кузова
         /// </summary>
         public bool BodyKit { get; private set; }
 
         /// <summary>
-        /// Признак (опция) наличия антикрыла
+        /// Признак (опция) наличия tent
         /// </summary>
-        public bool Wing { get; private set; }
-
-        /// <summary>
-        /// Признак (опция) наличия гоночной полосы
-        /// </summary>
-        public bool SportLine { get; private set; }
+        public bool Tent { get; private set; }
 
         /// <summary>
         /// Шаг перемещения автомобиля
         /// </summary>
         public double Step => (double)Speed * 100 / Weight;
 
-        /// <summary>
-        /// Инициализация полей объекта-класса спортивного автомобиля
-        /// </summary>
-        /// <param name="speed">Скорость</param>
-        /// <param name="weight">Вес автомобиля</param>
-        /// <param name="bodyColor">Основной цвет</param>
-        /// <param name="additionalColor">Дополнительный цвет</param>
-        /// <param name="bodyKit">Признак наличия обвеса</param>
-        /// <param name="wing">Признак наличия антикрыла</param>
-        /// <param name="sportLine">Признак наличия гоночной полосы</param>
-
         public void Init(int speed, double weight, Color bodyColor, Color
-    additionalColor, bool bodyKit, bool wing, bool sportLine)
+    additionalColor, bool bodyKit, bool tent)
         {
             Speed = speed;
             Weight = weight;
             BodyColor = bodyColor;
             AdditionalColor = additionalColor;
             BodyKit = bodyKit;
-            Wing = wing;
-            SportLine = sportLine;
+            Tent = tent;
+           
         }
     }
 
